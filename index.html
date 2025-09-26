@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gibin G | Cybersecurity Analyst Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap');
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #000500;
+            color: #c0c0c0;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .content-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 8rem 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #00ff41;
+            text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41;
+        }
+
+        h2 {
+            color: #f0f0f0;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: #00ff41;
+            animation: blink 0.8s infinite;
+            vertical-align: bottom;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        h3 {
+            font-size: 2.75rem; /* Made larger */
+            font-weight: 700;
+            color: #00ff41;
+            text-transform: uppercase;
+            width: 100%;
+            text-align: left; /* Aligned to the left */
+            padding-bottom: 1rem; /* Space for the border */
+            margin-bottom: 3rem;
+            border-bottom: 1px solid rgba(0, 255, 65, 0.2); /* Professional separator */
+        }
+        
+        .skill-category-title {
+            font-size: 1.25rem;
+            color: #00ff41;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+        }
+        
+        .skill-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .skill-list-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            color: #c0c0c0;
+        }
+
+        .skill-list-item:hover {
+            color: #00ff41;
+            transform: translateX(5px);
+        }
+        
+        .skill-list-item svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+            color: #00ff41;
+        }
+
+        .project-card, .timeline-item, .certification-card, .badge-card {
+            background: rgba(0, 20, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: left;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover, .timeline-item:hover, .certification-card:hover {
+             transform: translateY(-5px);
+             box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+             border-color: rgba(0, 255, 65, 0.5);
+        }
+
+        .timeline-item a {
+            color: #c0c0c0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .timeline-item a:hover {
+            color: #00ff41;
+        }
+
+        .timeline-item, .project-card, .badge-card {
+            margin-bottom: 1.5rem;
+        }
+
+        .certification-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .cert-title {
+            font-weight: bold;
+            color: #c0c0c0;
+        }
+
+        .cert-issuer {
+            font-size: 0.875rem;
+            color: #9ca3af;
+        }
+        
+        .view-cert-btn, .project-link {
+            padding: 0.5rem 1rem;
+            border: 1px solid #00ff41;
+            color: #00ff41;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .view-cert-btn:hover, .project-link:hover {
+            background-color: rgba(0, 255, 65, 0.1);
+            box-shadow: 0 0 10px #00ff41;
+        }
+        
+        .badge-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .badge-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+            border-color: rgba(0, 255, 65, 0.5);
+        }
+        .badge-image {
+            width: 6rem;
+            height: 6rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease-in-out;
+            color: #00ff41;
+        }
+        .badge-card:hover .badge-image {
+            transform: scale(1.1);
+        }
+        .badge-title {
+            font-weight: bold;
+            color: #c0c0c0;
+            margin-bottom: 0.25rem;
+            flex-grow: 1;
+        }
+        .badge-issuer {
+            font-size: 0.875rem;
+            color: #00ff41;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            background: rgba(0, 20, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            color: #c0c0c0;
+            transition: all 0.3s ease;
+        }
+        .social-link:hover {
+            background: rgba(0, 255, 65, 0.3);
+            transform: scale(1.1);
+            color: #fff;
+        }
+
+        .contact-icon {
+            display: inline-block;
+            color: #00ff41;
+            margin: 0 1rem;
+            transition: transform 0.3s ease;
+        }
+        .contact-icon:hover {
+            transform: scale(1.1);
+        }
+
+        #navbar {
+            background: rgba(0, 5, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+        }
+        .nav-link {
+            color: #c0c0c0;
+            text-decoration: none;
+            transition: color 0.3s, border-bottom-color 0.3s;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+        }
+        .nav-link:hover {
+            color: #00ff41;
+        }
+        .nav-link.active {
+            color: #00ff41;
+            border-bottom-color: #00ff41;
+        }
+        .nav-link-mobile {
+            color: #c0c0c0;
+            text-decoration: none;
+            font-size: 1.5rem;
+            margin: 1.5rem 0;
+            transition: color 0.3s;
+        }
+        .nav-link-mobile:hover, .nav-link-mobile.active {
+            color: #00ff41;
+        }
+
+        .resume-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #00ff41;
+            color: #00ff41;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+        .resume-btn:hover {
+            background-color: rgba(0, 255, 65, 0.1);
+            box-shadow: 0 0 10px #00ff41;
+        }
+
+        #tv-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            aspect-ratio: 2000 / 1650;
+            margin: 0;
+        }
+
+        #tv-container canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h3 { font-size: 2rem; } /* Adjusted for mobile */
+            .typing-cursor { height: 1.875rem; }
+        }
+        @media (min-width: 768px) {
+            .typing-cursor { height: 2.25rem; }
+        }
+.verify-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #0ed328;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.verify-btn:hover {
+    background-color: #ce0f25;
+}
+
+    </style>
+</head>
+<body>
+    
+    <!-- Certificate Modal -->
+    <div id="cert-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4 transition-opacity duration-300">
+        <div class="bg-black border border-green-500/50 rounded-lg shadow-2xl shadow-green-500/10 w-full max-w-4xl flex flex-col md:flex-row relative">
+            <!-- Close Button -->
+            <button id="modal-close-btn" class="absolute top-2 right-4 text-gray-400 hover:text-white text-4xl font-bold">&times;</button>
+            
+            <!-- Left Side: Image -->
+            <div class="w-full md:w-1/2 p-6 flex items-center justify-center bg-black rounded-l-lg">
+                <img id="modal-cert-image" src="" alt="Certificate Image" class="max-w-full max-h-96 rounded-md object-contain">
+            </div>
+
+            <!-- Right Side: Details -->
+            <div class="w-full md:w-1/2 p-6 flex flex-col justify-center">
+                <h4 id="modal-cert-name" class="text-2xl font-bold text-green-400 mb-4">Certificate Name</h4>
+                <p class="text-lg text-gray-300 mb-2"><strong>Issuer:</strong> <span id="modal-cert-issuer"></span></p>
+                <p class="text-lg text-gray-300"><strong>Issued Date:</strong> <span id="modal-cert-date"></span></p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="fixed left-0 top-1/2 -translate-y-1/2 flex flex-col items-center gap-y-3 p-3 z-30">
+        <!-- LinkedIn Icon -->
+        <a href="https://linkedin.com/in/gibin-g-cyber-entry" target="_blank" rel="noopener noreferrer"
+            class="social-link"
+            aria-label="LinkedIn Profile">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+        </a>
+        
+        <!-- Email Icon -->
+        <a href="mailto:gibigibin3@gmail.com"
+            class="social-link"
+            aria-label="Send an Email">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/>
+            </svg>
+        </a>
+
+       <!-- WhatsApp Icon -->
+<a href="https://wa.me/918075373727" target="_blank" rel="noopener noreferrer"
+   class="social-link"
+   aria-label="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="28" height="28" viewBox="0 0 48 48">
+        <path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-0.001,0,0,0,0,0h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303z"></path>
+        <path fill="#fff" d="M4.868,43.803c-0.132,0-0.26-0.052-0.355-0.148c-0.125-0.127-0.174-0.312-0.127-0.483l2.639-9.636c-1.636-2.906-2.499-6.206-2.497-9.556C4.532,13.238,13.273,4.5,24.014,4.5c5.21,0.002,10.105,2.031,13.784,5.713c3.679,3.683,5.704,8.577,5.702,13.781c-0.004,10.741-8.746,19.48-19.486,19.48c-3.189-0.001-6.344-0.788-9.144-2.277l-9.875,2.589C4.953,43.798,4.911,43.803,4.868,43.803z"></path>
+        <path fill="#cfd8dc" d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,4C24.014,4,24.014,4,24.014,4C12.998,4,4.032,12.962,4.027,23.979c-0.001,3.367,0.849,6.685,2.461,9.622l-2.585,9.439c-0.094,0.345,0.002,0.713,0.254,0.967c0.19,0.192,0.447,0.297,0.711,0.297c0.085,0,0.17-0.011,0.254-0.033l9.687-2.54c2.828,1.468,5.998,2.243,9.197,2.244c11.024,0,19.99-8.963,19.995-19.98c0.002-5.339-2.075-10.359-5.848-14.135C34.378,6.083,29.357,4.002,24.014,4L24.014,4z"></path>
+        <path fill="#40c351" d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.157-4.626c-8.704,0-15.783,7.076-15.787,15.774c-0.001,2.981,0.833,5.883,2.413,8.396l0.376,0.597l-1.595,5.821l5.973-1.566l0.577,0.342c2.422,1.438,5.2,2.198,8.032,2.199h0.006c8.698,0,15.777-7.077,15.78-15.776C39.795,19.778,38.156,15.814,35.176,12.832z"></path>
+        <path fill="#fff" fill-rule="evenodd" d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z" clip-rule="evenodd"></path>
+    </svg>
+</a>
+
+        </a>
+    </div>
+
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-20 p-4">
+        <div class="container mx-auto flex justify-between items-center max-w-6xl">
+            <a href="#home" class="text-xl font-bold text-green-400 nav-link" data-section="home">GIBIN G.</a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="nav-link active" data-section="home">Home</a>
+                <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+                <a href="#experience" class="nav-link" data-section="experience">Experience</a>
+                <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+                <a href="#education" class="nav-link" data-section="education">Education</a>
+                <a href="#certifications" class="nav-link" data-section="certifications">Certifications</a>
+                <a href="#badges" class="nav-link" data-section="badges">Badges</a>
+                <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+                <a href="resume\resume.pdf" download class="resume-btn ml-4">Resume</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-green-400 text-3xl z-40">
+                <span id="hamburger-icon">&#9776;</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-95 z-30 md:hidden">
+        <div class="flex flex-col items-center justify-center h-full">
+            <a href="#home" class="nav-link-mobile" data-section="home">Home</a>
+            <a href="#skills" class="nav-link-mobile" data-section="skills">Skills</a>
+            <a href="#experience" class="nav-link-mobile" data-section="experience">Experience</a>
+            <a href="#projects" class="nav-link-mobile" data-section="projects">Projects</a>
+            <a href="#education" class="nav-link-mobile" data-section="education">Education</a>
+            <a href="#certifications" class="nav-link-mobile" data-section="certifications">Certifications</a>
+            <a href="#badges" class="nav-link-mobile" data-section="badges">Badges</a>
+            <a href="#contact" class="nav-link-mobile" data-section="contact">Contact</a>
+            <a href="resume\resume.pdf" download class="nav-link-mobile mt-8 resume-btn">Download Resume</a>
+        </div>
+    </div>
+
+    <canvas id="bg-canvas"></canvas>
+    
+    <main>
+        <!-- HERO SECTION -->
+        <section id="home" class="content-section">
+            <div class="w-full max-w-6xl mx-auto grid md:grid-cols-2 items-center gap-8">
+                <div class="text-center md:text-left">
+                    <p class="text-lg text-green-400 mb-2">Hello, I'm</p>
+                    <h1 class="mb-2 text-5xl md:text-7xl"><span class="font-bold">GIBIN</span> <span class="font-light">G</span></h1>
+                    <h2 class="text-2xl md:text-2xl text-gray-200 h-10 md:h-16">
+                        <span id="typewriter-text"></span><span class="typing-cursor"></span>
+                    </h2>
+                    <div class="flex items-center mt-4 justify-center md:justify-start text-gray-400">
+                        <svg class="w-5 h-5 mr-2 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                        <span>Kerala, India | Open to Relocate</span>
+                    </div>
+                    <p class="text-gray-400 mt-6 max-w-lg mx-auto md:mx-0">Architecting resilient digital defenses and neutralizing advanced threats through proactive intelligence, ethical hacking, and next-generation security automation.</p>
+                </div>
+                <div class="hidden md:flex relative w-full items-center">
+                    <div id="tv-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section id="skills" class="content-section">
+            <div class="w-full max-w-6xl mx-auto">
+                <h3>Technical Skills</h3>
+                <div class="grid md:grid-cols-2 gap-x-12 gap-y-8 text-left">
+                    
+                    <div>
+                        <h4 class="skill-category-title">Threat Intelligence & SOC</h4>
+                        <ul class="skill-list">
+                            <li class="skill-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75l3 3m0 0l3-3m-3 3v-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                <span>SIEM (Splunk)</span>
+                            </li>
+                            <li class="skill-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M21.75 12h-2.25m-1.591 5.834l-1.591-1.591M5.834 5.834L4.242 4.242M4.5 12H2.25m1.591 5.834l1.591-1.591M12 21.75v-2.25" /></svg>
+                                <span>Threat Hunting</span>
+                            </li>
+                            <li class="skill-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126z" /></svg>
+                                <span>Incident Response</span>
+                            </li>
+                            <li class="skill-list-item">
+                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" /></svg>
+                                <span>Dark Web Monitoring</span>
+                            </li>
+                            <li class="skill-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" /></svg>
+                                <span>MITRE ATT&CK</span>
+                            </li>
+                             <li class="skill-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                                <span>Log Analysis</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="skill-category-title">Offensive Security</h4>
+                        <ul class="skill-list">
+                            <li class="skill-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
+                                <span>Penetration Testing</span>
+                            </li>
+                             <li class="skill-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
+                                <span>Ethical Hacking</span>
+                            </li>
+                            <li class="skill-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" /></svg>
+                                <span>Vulnerability Assessment</span>
+                            </li>
+                            <li class="skill-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m3 0h3m-3 2.25l3 2.25-3 2.25M16.5 7.5h3m-3 4.5h3m-3 4.5h3M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" /></svg>
+                                <span>Kali Linux Suite</span>
+                            </li>
+                             <li class="skill-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 2.45m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.58 5.84a6 6 0 01-5.84-7.38m5.84 2.58a14.98 14.98 0 00-6.16 12.12A14.98 14.98 0 009.63 21.55m5.96-5.96a14.926 14.926 0 015.841-2.58m.119 8.54a6 6 0 007.381-5.84m-2.581 5.84A14.927 14.927 0 0021.55 9.63m-5.96 5.96a14.926 14.926 0 01-5.841 2.58" /></svg>
+                                <span>Metasploit</span>
+                            </li>
+                            <li class="skill-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" /></svg>
+                                <span>Burp Suite</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="skill-category-title">Web Development</h4>
+                         <ul class="skill-list">
+                            <li class="skill-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" /></svg>
+                                <span>HTML</span>
+                            </li>
+                            <li class="skill-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 012.829-5.855L14.25 9.75M9.813 15.904L12 14.25v-2.535a4.5 4.5 0 01.879-2.828L14.25 9.75l-2.828-2.828a4.5 4.5 0 00-5.854 2.829L5.25 9.75v5.342a4.5 4.5 0 002.829 5.855L9 18.75l.813-2.846M14.25 9.75L12 11.5m2.25-1.75l2.828-2.828a4.5 4.5 0 015.855 2.829L21.75 9.75v5.342a4.5 4.5 0 01-5.855 2.829L15 18.75l-2.846-.813" /></svg>
+                                <span>CSS</span>
+                            </li>
+                            <li class="skill-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
+                                <span>JavaScript</span>
+                            </li>
+                             <li class="skill-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 2.45m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.58 5.84a6 6 0 01-5.84-7.38m5.84 2.58a14.98 14.98 0 00-6.16 12.12A14.98 14.98 0 009.63 21.55m5.96-5.96a14.926 14.926 0 015.841-2.58m.119 8.54a6 6 0 007.381-5.84m-2.581 5.84A14.927 14.927 0 0021.55 9.63m-5.96 5.96a14.926 14.926 0 01-5.841 2.58" /></svg>
+                                <span>React.js</span>
+                            </li>
+                            <li class="skill-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg>
+                                <span>API Integration</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="skill-category-title">IoT Security & Automation</h4>
+                        <ul class="skill-list">
+                            <li class="skill-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H12m-3.75 2.25h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                                <span>Firmware Analysis</span>
+                            </li>
+                            <li class="skill-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" /></svg>
+                                <span>Secure Communication</span>
+                            </li>
+                            <li class="skill-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" /></svg>
+                                <span>Access Control</span>
+                            </li>
+                            <li class="skill-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" /></svg>
+                                <span>Device Hardening</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE SECTION -->
+        <section id="experience" class="content-section">
+            <div class="w-full max-w-3xl mx-auto">
+                <h3>Work Internship</h3>
+                <div class="timeline-item">
+                    <p class="text-green-400 font-bold">Threat Intelligence & Dark Web Monitoring Intern</p>
+                    <p class="text-gray-300">
+                        <a href="https://falconfeeds.io/" target="_blank" rel="noopener noreferrer">Falconfeeds</a> | Mar 2025 – Aug 2025
+                    </p>
+                    <p class="text-gray-400 mt-2">Spearheaded proactive dark web monitoring operations, translating raw threat data from clandestine forums into actionable intelligence reports. Identified critical Indicators of Compromise (IOCs) and documented adversarial TTPs to fortify client defenses.</p>
+                </div>
+                <div class="timeline-item">
+                    <p class="text-green-400 font-bold">Cyber Security Intern</p>
+                    <p class="text-gray-300">
+                        <a href="https://phemesoft.com/" target="_blank" rel="noopener noreferrer">Pheme Software Pvt. Ltd</a> | Sep 2024 – Nov 2024
+                    </p>
+                    <p class="text-gray-400 mt-2">Engineered a custom Python-based web vulnerability scanner to automate the detection of OWASP Top 10 risks. Successfully identified and documented critical vulnerabilities, directly enhancing the company's internal security posture and hardening web applications against attack.</p>
+                </div>
+                <div class="timeline-item">
+                    <p class="text-green-400 font-bold">Cyber Security Intern</p>
+                    <p class="text-gray-300">
+                        <a href="https://eyeqdotnet.com/" target="_blank" rel="noopener noreferrer">Eye Q Dot Net Pvt. Ltd</a> | Dec 2023 – Jan 2024
+                    </p>
+                    <p class="text-gray-400 mt-2">Executed comprehensive system and network security assessments utilizing a full suite of Kali Linux tools, including Nmap and Burp Suite. Discovered and reported high-impact vulnerabilities, providing clear remediation guidance to support IT teams and ensure system integrity.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- PROJECTS SECTION -->
+        <section id="projects" class="content-section">
+            <div class="w-full max-w-4xl mx-auto">
+                <h3>Key Projects</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="project-card">
+                        <p class="text-green-400 font-bold">Automated Penetration Testing Tool</p>
+                        <p class="text-gray-400 mt-2">Architected and developed a modular Automated Penetration Testing Tool in Python. This powerful script integrates Nmap and OWASP ZAP APIs to streamline network discovery and web application scanning, automatically detecting critical vulnerabilities like SQLi & XSS and generating detailed HTML reports for rapid remediation.</p>
+                    </div>
+                    <div class="project-card">
+                        <p class="text-green-400 font-bold">Vulnerability Assessment Tool</p>
+                        <p class="text-gray-400 mt-2">Built a sophisticated command-line vulnerability assessment tool designed for deep-dive analysis of web applications. The tool simulates advanced attack vectors to uncover complex security flaws in authentication, session management, and input validation, providing clear, actionable mitigation strategies.</p>
+                    </div>
+                     <div class="project-card">
+                        <p class="text-green-400 font-bold">IoT-Based Smart Garage Door</p>
+                        <p class="text-gray-400 mt-2">Designed and deployed a secure smart garage door opener leveraging an ESP32 microcontroller and custom mobile application. This project focused on hardening IoT devices by implementing robust authentication mechanisms and secure communication protocols to prevent unauthorized physical and digital access.</p>
+                    </div>
+                    <div class="project-card flex flex-col">
+                        <div class="flex-grow">
+                            <p class="text-green-400 font-bold">AI Video Creation</p>
+                            <p class="text-gray-400 mt-2">Leveraged advanced generative AI platforms to produce a professional-grade advertisement video. This project showcases expertise in cutting-edge prompt engineering and AI-driven content creation, demonstrating the application of AI beyond traditional cybersecurity to innovative marketing solutions.</p>
+                        </div>
+                        <div class="mt-4">
+                            <a href="https://youtu.be/xo810Icvw00?si=F5NIu7BrMfUXAPxb" target="_blank" rel="noopener noreferrer" class="project-link">View Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION SECTION -->
+        <section id="education" class="content-section">
+            <div class="w-full max-w-3xl mx-auto">
+                <h3>Education</h3>
+                <div class="timeline-item">
+                    <p class="text-green-400 font-bold">B.Sc. in Cyber Forensics, Data Analytics, and Cyber Security (with IBM)</p>
+                    <p class="text-gray-300">
+                        <a href="https://yenepoya.edu.in/" target="_blank" rel="noopener noreferrer">Yenepoya University</a> | Mangalore, India | Completed May 2025
+                    </p>
+                    <ul class="text-gray-400 mt-2 list-disc list-inside">
+                        <li>CGPA: 7.63 / 10</li>
+                        <li>Awarded First Place (Team Lead), Intercollege IBM Technical Presentation (ICE Day).</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <p class="text-green-400 font-bold">Higher Secondary Education (Grade 12)</p>
+                    <p class="text-gray-300">
+                        <a href="https://dhsekerala.gov.in/" target="_blank" rel="noopener noreferrer">MES EMHSS</a> | Kerala, India | Completed May 2022
+                    </p>
+                    <ul class="text-gray-400 mt-2 list-disc list-inside">
+                        <li>Stream: Computer Science (Maths, Physics & Chemistry)</li>
+                        <li>Grade: 80%</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CERTIFICATIONS SECTION -->
+        <section id="certifications" class="content-section">
+            <div class="w-full max-w-5xl mx-auto">
+                <h3>Certifications</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="certification-card">
+                        <div>
+                            <p class="cert-title">Certified Ethical Hacker (CEH v12)</p>
+                            <p class="cert-issuer">Learn Karts</p>
+                        </div>
+                        <button class="view-cert-btn" data-name="Certified Ethical Hacker (CEH v12)" data-issuer="Learn Karts" data-date="Jan 2024" data-img="images\cert\ceh.jpg">View</button>
+                    </div>
+                     <div class="certification-card">
+                        <div>
+                            <p class="cert-title">AI Prompt Engineering Certificate</p>
+                            <p class="cert-issuer">Dubai Centre for Artificial Intelligence (DCAI)</p>
+                        </div>
+                        <button class="view-cert-btn" data-name="AI Prompt Engineering Certificate" data-issuer="Dubai Centre for Artificial Intelligence (DCAI)" data-date="Feb 2024" data-img="images\cert\1 million.jpg">View</button>
+                    </div>
+                     <div class="certification-card">
+                        <div>
+                            <p class="cert-title">Google Cybersecurity Professional Certificate</p>
+                            <p class="cert-issuer">Coursera (Google)</p>
+                        </div>
+                        
+                        <button class="view-cert-btn" data-name="Google Cybersecurity Professional Certificate" data-issuer="Coursera (Google)" data-date="Mar 2024" data-img="images\cert\google.jpg">View</button>
+                    </div>
+                     <div class="certification-card">
+                        <div>
+                            <p class="cert-title">Generative AI Essentials</p>
+                            <p class="cert-issuer">Coursera (IBM)</p>
+                        </div>
+                        <button class="view-cert-btn" data-name="Generative AI Essentials" data-issuer="Coursera (IBM)" data-date="Apr 2024" data-img="images\cert\ibm ai.jpg">View</button>
+                    </div>
+                     <div class="certification-card">
+                        <div>
+                            <p class="cert-title">Intro to Splunk</p>
+                            <p class="cert-issuer">Splunk</p>
+                        </div>
+                        <button class="view-cert-btn" data-name="Intro to Splunk" data-issuer="Splunk" data-date="May 2024" data-img="images\cert\splunk.jpg">View</button>
+                    </div>
+                     <div class="certification-card">
+                        <div>
+                            <p class="cert-title">Practical Approach to Cybersecurity</p>
+                            <p class="cert-issuer">TCS iON</p>
+                        </div>
+                        <button class="view-cert-btn" data-name="Practical Approach to Cybersecurity" data-issuer="TCS iON" data-date="Jan 2025" data-img="images\cert\tcs.png">View</button>
+                    </div>
+                     <div class="certification-card">
+                        <div>
+                            <p class="cert-title">Introduction to Cybersecurity</p>
+                            <p class="cert-issuer">Cisco Networking Academy</p>
+                        </div>
+                        <button class="view-cert-btn" data-name="Introduction to Cybersecurity" data-issuer="Cisco Networking Academy" data-date="Jul 2024" data-img="images\cert\cisco.jpg">View</button>
+                    </div>
+                      <div class="certification-card">
+                        <div>
+                            <p class="cert-title">Network Security</p>
+                            <p class="cert-issuer">ISC2</p>
+                        </div>
+                        <button class="view-cert-btn" data-name="Practical Approach to Cybersecurity" data-issuer="TCS iON" data-date="Jan 2025" data-img="images\cert\isc2.jpg">View</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BADGES SECTION -->
+      <section id="badges" class="content-section">
+    <div class="w-full max-w-5xl mx-auto">
+        <h3>Badges</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="badge-card">
+                <img src="images\badge\101.png" 
+                     alt="AWS Cloud Computing 101 Badge" 
+                     class="badge-image">
+                <p class="badge-title">Cloud Computing 101</p>
+                <p class="badge-issuer">AWS</p>
+                <a href="https://www.credly.com/earner/earned/badge/62564c81-a2b4-4bbe-a836-62bfb5762a5b" 
+                   target="_blank" class="verify-btn">Verify</a>
+            </div>
+
+            <div class="badge-card">
+                <img src="images/badge/cisco.png" 
+                     alt="Intro to Cybersecurity Badge" 
+                     class="badge-image">
+                <p class="badge-title">Intro to Cybersecurity</p>
+                <p class="badge-issuer">CISCO</p>
+                <a href="https://www.credly.com/earner/earned/badge/c4c3252a-015b-471d-8934-80ce9d6a3b17" target="_blank" class="verify-btn">Verify</a>
+            </div>
+
+            <div class="badge-card">
+                <img src="images/badge/ibm ai.png" 
+                     alt="Generative AI Badge" 
+                     class="badge-image">
+                <p class="badge-title">Generative AI</p>
+                <p class="badge-issuer">IBM</p>
+                <a href="https://www.credly.com/earner/earned/badge/1d62ab46-33ee-4891-b871-85df21a0f7ca" target="_blank" class="verify-btn">Verify</a>
+            </div>
+
+            <div class="badge-card">
+                <img src="images/badge/aws sec.png" 
+                     alt="Start with Security Badge" 
+                     class="badge-image">
+                <p class="badge-title">Start with Security</p>
+                <p class="badge-issuer">AWS</p>
+                <a href="https://www.credly.com/earner/earned/badge/830ef2b6-4a09-442d-8674-a9fef3bffee7" target="_blank" class="verify-btn">Verify</a>
+            </div>
+
+            <div class="badge-card sm:col-start-auto lg:col-start-2">
+                <img src="images/badge/google.png" 
+                     alt="Cyber Security Badge" 
+                     class="badge-image">
+                <p class="badge-title">Cyber Security</p>
+                <p class="badge-issuer">Google</p>
+                <a href="https://www.credly.com/earner/earned/badge/1abb36e1-c08e-4dea-89fd-4589bf924596" target="_blank" class="verify-btn">Verify</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="content-section text-center">
+            <div class="max-w-2xl">
+                <h3 class="text-center">Get In Touch</h3>
+                <p class="text-gray-400 mb-8">Actively seeking challenging roles in a Security Operations Center (SOC) or Incident Response team where I can apply my skills to protect critical infrastructure. Let's connect to discuss how I can be a valuable asset to your organization.</p>
+                <div class="flex justify-center items-center text-2xl">
+                    <a href="mailto:gibigibin3@gmail.com" class="contact-icon" aria-label="Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                    </a>
+                    <a href="https://linkedin.com/in/gibin-g-cyber-entry" target="_blank" class="contact-icon" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                 <a href="https://wa.me/918075373727" target="_blank" rel="noopener noreferrer"
+   class="social-link"
+   aria-label="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="28" height="28" viewBox="0 0 48 48">
+        <path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-0.001,0,0,0,0,0h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303z"></path>
+        <path fill="#fff" d="M4.868,43.803c-0.132,0-0.26-0.052-0.355-0.148c-0.125-0.127-0.174-0.312-0.127-0.483l2.639-9.636c-1.636-2.906-2.499-6.206-2.497-9.556C4.532,13.238,13.273,4.5,24.014,4.5c5.21,0.002,10.105,2.031,13.784,5.713c3.679,3.683,5.704,8.577,5.702,13.781c-0.004,10.741-8.746,19.48-19.486,19.48c-3.189-0.001-6.344-0.788-9.144-2.277l-9.875,2.589C4.953,43.798,4.911,43.803,4.868,43.803z"></path>
+        <path fill="#cfd8dc" d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,4C24.014,4,24.014,4,24.014,4C12.998,4,4.032,12.962,4.027,23.979c-0.001,3.367,0.849,6.685,2.461,9.622l-2.585,9.439c-0.094,0.345,0.002,0.713,0.254,0.967c0.19,0.192,0.447,0.297,0.711,0.297c0.085,0,0.17-0.011,0.254-0.033l9.687-2.54c2.828,1.468,5.998,2.243,9.197,2.244c11.024,0,19.99-8.963,19.995-19.98c0.002-5.339-2.075-10.359-5.848-14.135C34.378,6.083,29.357,4.002,24.014,4L24.014,4z"></path>
+        <path fill="#40c351" d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.157-4.626c-8.704,0-15.783,7.076-15.787,15.774c-0.001,2.981,0.833,5.883,2.413,8.396l0.376,0.597l-1.595,5.821l5.973-1.566l0.577,0.342c2.422,1.438,5.2,2.198,8.032,2.199h0.006c8.698,0,15.777-7.077,15.78-15.776C39.795,19.778,38.156,15.814,35.176,12.832z"></path>
+        <path fill="#fff" fill-rule="evenodd" d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z" clip-rule="evenodd"></path>
+    </svg>
+</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // --- THREE.JS SETUP (BACKGROUND) ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        camera.position.z = 5;
+
+        // --- MOUSE INTERACTION SETUP ---
+        const mouse = new THREE.Vector2();
+        document.addEventListener('mousemove', (event) => {
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        // --- 3D OBJECTS (MATRIX RAIN) ---
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 15000;
+        const posArray = new Float32Array(particlesCount * 3);
+        const velocityArray = new Float32Array(particlesCount);
+        const worldSize = { x: 30, y: 40 }; 
+
+        for(let i = 0; i < particlesCount * 3; i+=3) {
+            posArray[i] = (Math.random() - 0.5) * worldSize.x;
+            posArray[i+1] = (Math.random() - 0.5) * worldSize.y;
+            posArray[i+2] = (Math.random() - 0.5) * worldSize.x;
+            velocityArray[i/3] = Math.random() * 0.03 + 0.01;
+        }
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.02,
+            color: 0x00ff41,
+            transparent: true,
+            opacity: 0.7,
+            blending: THREE.AdditiveBlending
+        });
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        // --- LIGHTS ---
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+        scene.add(ambientLight);
+        const pointLight = new THREE.PointLight(0x00ff41, 1.0);
+        pointLight.position.set(0, 0, 2);
+        scene.add(pointLight);
+
+        // --- SCROLL ANIMATION ---
+        const sections = document.querySelectorAll('.content-section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const mobileNavLinks = document.querySelectorAll('.nav-link-mobile');
+        let lastScrollTop = 0;
+
+        function updateOnScroll() {
+            const scrollY = window.scrollY;
+            const scrollFactorZ = 5 - scrollY * 0.003;
+            const scrollFactorY = -scrollY * 0.002;
+            camera.position.z += (scrollFactorZ - camera.position.z) * 0.1;
+            camera.position.y += (scrollFactorY - camera.position.y) * 0.1;
+            
+            let currentSectionId = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150; 
+                if (scrollY >= sectionTop) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            const updateActiveLink = (links) => {
+                 links.forEach(link => {
+                     link.classList.remove('active');
+                     if (link.dataset.section === currentSectionId) {
+                         link.classList.add('active');
+                     }
+                 });
+            };
+            updateActiveLink(navLinks);
+            updateActiveLink(mobileNavLinks);
+            lastScrollTop = scrollY <= 0 ? 0 : scrollY;
+        }
+        window.addEventListener('scroll', updateOnScroll);
+
+        // --- NAVBAR CLICK & MOBILE MENU ---
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+
+        const allLinks = document.querySelectorAll('a[href^="#"]');
+        allLinks.forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if(this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView();
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        hamburgerIcon.innerHTML = '&#9776;';
+                    }
+                }
+            });
+        });
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                hamburgerIcon.innerHTML = '&#9776;';
+            } else {
+                hamburgerIcon.innerHTML = '&times;';
+            }
+        });
+        
+        // --- CERTIFICATE MODAL LOGIC ---
+        const certModal = document.getElementById('cert-modal');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+        const viewCertBtns = document.querySelectorAll('.view-cert-btn');
+        const modalCertImage = document.getElementById('modal-cert-image');
+        const modalCertName = document.getElementById('modal-cert-name');
+        const modalCertIssuer = document.getElementById('modal-cert-issuer');
+        const modalCertDate = document.getElementById('modal-cert-date');
+
+        viewCertBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modalCertName.textContent = btn.dataset.name;
+                modalCertIssuer.textContent = btn.dataset.issuer;
+                modalCertDate.textContent = btn.dataset.date;
+                modalCertImage.src = btn.dataset.img;
+                certModal.classList.remove('hidden');
+            });
+        });
+
+        const closeModal = () => certModal.classList.add('hidden');
+        modalCloseBtn.addEventListener('click', closeModal);
+        certModal.addEventListener('click', (e) => {
+            if (e.target === certModal) closeModal();
+        });
+        
+        // --- TYPEWRITER EFFECT (HERO TEXT) ---
+        const typewriterTextEl = document.getElementById('typewriter-text');
+        const titles = ["Junior Cybersecurity Analyst", "CEH v12 Certified", "SOC & Incident Response", "Prompt Engineer"];
+        let titleIndex = 0, charIndex = 0, isDeleting = false;
+
+        function type() {
+            const currentTitle = titles[titleIndex];
+            if (isDeleting) {
+                charIndex--;
+            } else {
+                charIndex++;
+            }
+            typewriterTextEl.textContent = currentTitle.substring(0, charIndex);
+            let typeSpeed = isDeleting ? 100 : 200;
+            if (!isDeleting && charIndex === currentTitle.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                titleIndex = (titleIndex + 1) % titles.length;
+                typeSpeed = 500;
+            }
+            setTimeout(type, typeSpeed);
+        }
+
+        // --- CYBER TV SCRIPT ---
+        function setupCyberTV() {
+            const container = document.getElementById('tv-container');
+            if (!container) return;
+
+            const tvScene = new THREE.Scene();
+            const tvCamera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
+            tvCamera.position.set(0, 0, 5);
+
+            const tvRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            tvRenderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(tvRenderer.domElement);
+
+            const tvGeometry = new THREE.BoxGeometry(4, 3, 0.3);
+            const tvMaterial = new THREE.MeshStandardMaterial({ color: 0x111111 });
+            const tvFrame = new THREE.Mesh(tvGeometry, tvMaterial);
+            tvFrame.rotation.y = -0.1; 
+            tvFrame.position.x = -0.3;
+            tvScene.add(tvFrame);
+
+            const screenGeometry = new THREE.PlaneGeometry(3, 2);
+            const screenCanvas = document.createElement('canvas');
+            screenCanvas.width = 1024;
+            screenCanvas.height = 680;
+            const ctx = screenCanvas.getContext('2d');
+
+            const factsList = [
+                "⚠️ ALERT: Global ransomware attacks surge by 40% this month.",
+                "💾 Breach detected: Major corporation leaked confidential data.",
+                "🛡️ Cybersecurity tip: Enable 2FA to prevent account hacks.",
+                "🚨 Phishing attacks rising: Over 90% target email users.",
+                "🖥️ IoT vulnerability: Millions of devices exposed online.",
+                "🔒 Encryption failures discovered in cloud storage systems.",
+                "💡 Fact: First computer virus appeared in 1986, called Brain."
+            ];
+            let index = Math.floor(Math.random() * factsList.length);
+            let currentFact = factsList[index];
+            let tvCharIndex = 0;
+            let typedText = "";
+
+            function wrapText(text, maxWidth) {
+                const words = text.split(' ');
+                const lines = [];
+                let line = '';
+                for(let n = 0; n < words.length; n++) {
+                    const testLine = line + words[n] + ' ';
+                    const metrics = ctx.measureText(testLine);
+                    if (metrics.width > maxWidth && n > 0) {
+                        lines.push(line);
+                        line = words[n] + ' ';
+                    } else {
+                        line = testLine;
+                    }
+                }
+                lines.push(line);
+                return lines;
+            }
+
+            function typeWriterTV() {
+                if(tvCharIndex < currentFact.length) {
+                    typedText += currentFact.charAt(tvCharIndex);
+                    tvCharIndex++;
+                } else {
+                    setTimeout(() => {
+                        index = Math.floor(Math.random() * factsList.length);
+                        currentFact = factsList[index];
+                        tvCharIndex = 0;
+                        typedText = "";
+                    }, 4000);
+                }
+            }
+
+            const screenTexture = new THREE.CanvasTexture(screenCanvas);
+            const screenMaterial = new THREE.MeshBasicMaterial({ map: screenTexture });
+            const tvScreen = new THREE.Mesh(screenGeometry, screenMaterial);
+            tvScreen.position.z = 0.16;
+            tvScreen.rotation.y = -0.1;
+            tvScreen.position.x = -0.3;
+            tvScene.add(tvScreen);
+
+            const tvAmbientLight = new THREE.AmbientLight(0xffffff, 0.8);
+            tvScene.add(tvAmbientLight);
+            const tvDirectionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+            tvDirectionalLight.position.set(5, 5, 5);
+            tvScene.add(tvDirectionalLight);
+
+            function drawScreen() {
+                ctx.fillStyle = "#000";
+                ctx.fillRect(0, 0, screenCanvas.width, screenCanvas.height);
+                ctx.fillStyle = "#0f0";
+                ctx.font = '60px monospace';
+                const lines = wrapText(typedText, screenCanvas.width - 0);
+                for(let i = 0; i < lines.length; i++){
+                    ctx.fillText(lines[i], 30, 100 + i * 60);
+                }
+                for(let i = 0; i < 6; i++){
+                    const y = Math.random() * screenCanvas.height;
+                    ctx.fillStyle = `rgba(0,255,0,${Math.random()*0.3})`;
+                    ctx.fillRect(Math.random() * screenCanvas.width, y, Math.random() * screenCanvas.width, 2);
+                }
+                screenTexture.needsUpdate = true;
+            }
+
+            function animateTV() {
+                requestAnimationFrame(animateTV);
+                typeWriterTV();
+                drawScreen();
+                tvRenderer.render(tvScene, tvCamera);
+            }
+            animateTV();
+
+            window.addEventListener('resize', () => {
+                if (!container.clientWidth || !container.clientHeight) return;
+                tvCamera.aspect = container.clientWidth / container.clientHeight;
+                tvCamera.updateProjectionMatrix();
+                tvRenderer.setSize(container.clientWidth, container.clientHeight);
+            });
+        }
+
+        // --- WINDOW RESIZE (MAIN SCENE)---
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        }
+        window.addEventListener('resize', onWindowResize);
+
+        // --- ANIMATION LOOP (MAIN SCENE) ---
+        function animate() {
+            // Animate Matrix Rain
+            const positions = particlesMesh.geometry.attributes.position.array;
+            for (let i = 0; i < particlesCount; i++) {
+                positions[i*3 + 1] -= velocityArray[i];
+                if (positions[i*3 + 1] < -worldSize.y / 2) {
+                    positions[i*3 + 1] = worldSize.y / 2;
+                }
+            }
+            particlesMesh.geometry.attributes.position.needsUpdate = true;
+            
+            // Mouse interaction
+            const targetRotationX = mouse.y * 0.2;
+            const targetRotationY = mouse.x * 0.2;
+            scene.rotation.y += (targetRotationY - scene.rotation.y) * 0.05;
+            scene.rotation.x += (targetRotationX - scene.rotation.x) * 0.05;
+
+            renderer.render(scene, camera);
+            requestAnimationFrame(animate);
+        }
+        
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(type, 1000); 
+            setupCyberTV();
+        });
+
+        animate();
+    </script>
+
+</body>
+</html>
+
