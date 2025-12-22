@@ -2,6 +2,8 @@
 
 html {
     scroll-behavior: smooth;
+    /* CRITICAL FIX: Prevents fixed navbar from covering section titles */
+    scroll-padding-top: 100px;
 }
 
 body {
@@ -22,13 +24,57 @@ body {
     z-index: -1;
 }
 
+/* --- NAVBAR --- */
+#navbar {
+    background: rgba(0, 5, 0, 0.7);
+    /* FIX: Added webkit prefix for Safari support */
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+    /* CRITICAL FIX: Ensure navbar sits on top */
+    z-index: 50; 
+}
+
+.nav-link {
+    color: #c0c0c0;
+    text-decoration: none;
+    transition: color 0.3s, border-bottom-color 0.3s;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-link:hover {
+    color: #00ff41;
+}
+
+.nav-link.active {
+    color: #00ff41;
+    border-bottom-color: #00ff41;
+}
+
+.nav-link-mobile {
+    color: #c0c0c0;
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin: 1.5rem 0;
+    transition: color 0.3s;
+}
+
+.nav-link-mobile:hover, .nav-link-mobile.active {
+    color: #00ff41;
+}
+
+/* --- SECTIONS --- */
 .content-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 8rem 2rem;
+    padding: 4rem 2rem;
     position: relative;
     z-index: 10;
 }
@@ -37,13 +83,26 @@ h1 {
     font-size: 2.5rem;
     font-weight: 700;
     color: #00ff41;
-    text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41;
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.5), 0 0 20px rgba(0, 255, 65, 0.3);
 }
 
 h2 {
     color: #f0f0f0;
 }
 
+h3 {
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: #00ff41;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: left;
+    padding-bottom: 1rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+/* --- TYPING EFFECT --- */
 .typing-cursor {
     display: inline-block;
     width: 3px;
@@ -57,18 +116,27 @@ h2 {
     50% { opacity: 0; }
 }
 
-h3 {
-    font-size: 2.75rem; /* Made larger */
-    font-weight: 700;
-    color: #00ff41;
-    text-transform: uppercase;
+/* --- CARDS (Glassmorphism) --- */
+.project-card, .timeline-item, .certification-card, .badge-card {
+    background: rgba(0, 20, 0, 0.6);
+    /* FIX: Added webkit prefix */
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 255, 65, 0.15);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-align: left;
     width: 100%;
-    text-align: left; /* Aligned to the left */
-    padding-bottom: 1rem; /* Space for the border */
-    margin-bottom: 3rem;
-    border-bottom: 1px solid rgba(0, 255, 65, 0.2); /* Professional separator */
+    transition: all 0.3s ease;
 }
 
+.project-card:hover, .timeline-item:hover, .certification-card:hover, .badge-card:hover {
+     transform: translateY(-5px);
+     box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+     border-color: rgba(0, 255, 65, 0.5);
+}
+
+/* --- SKILLS --- */
 .skill-category-title {
     font-size: 1.25rem;
     color: #00ff41;
@@ -104,36 +172,23 @@ h3 {
     color: #00ff41;
 }
 
-.project-card, .timeline-item, .certification-card, .badge-card {
-    background: rgba(0, 20, 0, 0.7);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 255, 65, 0.2);
-    border-radius: 1rem;
-    padding: 1.5rem;
-    text-align: left;
-    width: 100%;
-    transition: all 0.3s ease;
-}
-
-.project-card:hover, .timeline-item:hover, .certification-card:hover {
-     transform: translateY(-5px);
-     box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
-     border-color: rgba(0, 255, 65, 0.5);
+/* --- TIMELINE & LINKS --- */
+.timeline-item, .project-card, .badge-card {
+    margin-bottom: 1.5rem;
 }
 
 .timeline-item a {
     color: #c0c0c0;
     text-decoration: none;
     transition: color 0.3s ease;
+    border-bottom: 1px dotted #00ff41;
 }
+
 .timeline-item a:hover {
     color: #00ff41;
 }
 
-.timeline-item, .project-card, .badge-card {
-    margin-bottom: 1.5rem;
-}
-
+/* --- CERTIFICATIONS --- */
 .certification-card {
     display: flex;
     justify-content: space-between;
@@ -143,7 +198,7 @@ h3 {
 
 .cert-title {
     font-weight: bold;
-    color: #c0c0c0;
+    color: #e0e0e0;
 }
 
 .cert-issuer {
@@ -151,7 +206,8 @@ h3 {
     color: #9ca3af;
 }
 
-.view-cert-btn, .project-link {
+/* --- BUTTONS --- */
+.view-cert-btn, .project-link, .resume-btn {
     padding: 0.5rem 1rem;
     border: 1px solid #00ff41;
     color: #00ff41;
@@ -162,45 +218,70 @@ h3 {
     text-decoration: none;
     background: transparent;
     cursor: pointer;
+    font-weight: bold;
 }
 
-.view-cert-btn:hover, .project-link:hover {
-    background-color: rgba(0, 255, 65, 0.1);
-    box-shadow: 0 0 10px #00ff41;
+.view-cert-btn:hover, .project-link:hover, .resume-btn:hover {
+    background-color: #00ff41;
+    color: #000;
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
 }
 
+/* --- BADGES --- */
 .badge-card {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
-.badge-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
-    border-color: rgba(0, 255, 65, 0.5);
-}
+
 .badge-image {
     width: 6rem;
     height: 6rem;
     margin-bottom: 1rem;
     transition: transform 0.3s ease-in-out;
-    color: #00ff41;
+    object-fit: contain;
 }
+
 .badge-card:hover .badge-image {
     transform: scale(1.1);
 }
+
 .badge-title {
     font-weight: bold;
-    color: #c0c0c0;
+    color: #e0e0e0;
     margin-bottom: 0.25rem;
     flex-grow: 1;
 }
+
 .badge-issuer {
     font-size: 0.875rem;
     color: #00ff41;
 }
 
+/* --- VERIFY BUTTON FIX --- */
+.verify-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: rgba(0, 255, 65, 0.1);
+    color: #00ff41;
+    border: 1px solid #00ff41;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.verify-btn:hover {
+    background-color: #00ff41;
+    color: #000; /* Black text on green background */
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+}
+
+/* --- SOCIAL & CONTACT --- */
 .social-link {
     display: flex;
     align-items: center;
@@ -209,15 +290,19 @@ h3 {
     height: 3rem;
     border-radius: 9999px;
     background: rgba(0, 20, 0, 0.7);
+    /* FIX: Added webkit prefix */
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(0, 255, 65, 0.2);
     color: #c0c0c0;
     transition: all 0.3s ease;
 }
+
 .social-link:hover {
-    background: rgba(0, 255, 65, 0.3);
+    background: rgba(0, 255, 65, 0.2);
     transform: scale(1.1);
-    color: #fff;
+    color: #00ff41;
+    border-color: #00ff41;
 }
 
 .contact-icon {
@@ -226,63 +311,19 @@ h3 {
     margin: 0 1rem;
     transition: transform 0.3s ease;
 }
+
 .contact-icon:hover {
     transform: scale(1.1);
+    filter: drop-shadow(0 0 5px #00ff41);
 }
 
-#navbar {
-    background: rgba(0, 5, 0, 0.5);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
-}
-.nav-link {
-    color: #c0c0c0;
-    text-decoration: none;
-    transition: color 0.3s, border-bottom-color 0.3s;
-    padding-bottom: 4px;
-    border-bottom: 2px solid transparent;
-    font-size: 0.875rem;
-    text-transform: uppercase;
-}
-.nav-link:hover {
-    color: #00ff41;
-}
-.nav-link.active {
-    color: #00ff41;
-    border-bottom-color: #00ff41;
-}
-.nav-link-mobile {
-    color: #c0c0c0;
-    text-decoration: none;
-    font-size: 1.5rem;
-    margin: 1.5rem 0;
-    transition: color 0.3s;
-}
-.nav-link-mobile:hover, .nav-link-mobile.active {
-    color: #00ff41;
-}
-
-.resume-btn {
-    padding: 0.5rem 1rem;
-    border: 1px solid #00ff41;
-    color: #00ff41;
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    text-decoration: none;
-}
-.resume-btn:hover {
-    background-color: rgba(0, 255, 65, 0.1);
-    box-shadow: 0 0 10px #00ff41;
-}
-
+/* --- 3D TV CONTAINER --- */
 #tv-container {
     position: relative;
     width: 100%;
     max-width: 700px;
-    aspect-ratio: 2000 / 1650;
-    margin: 0;
+    aspect-ratio: 4 / 3; 
+    margin: 0 auto;
 }
 
 #tv-container canvas {
@@ -291,26 +332,82 @@ h3 {
     height: 100%;
 }
 
+/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
     h1 { font-size: 2rem; }
-    h3 { font-size: 2rem; } /* Adjusted for mobile */
+    h3 { font-size: 2rem; }
     .typing-cursor { height: 1.875rem; }
+    .content-section { padding-top: 6rem; }
 }
+
 @media (min-width: 768px) {
     .typing-cursor { height: 2.25rem; }
 }
-.verify-btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 16px;
-    background-color: #0ed328;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s;
+
+/* --- CHATBOT STYLES --- */
+
+/* Custom Scrollbar for Chat */
+#chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+#chat-messages::-webkit-scrollbar-track {
+    background: #001100;
+}
+#chat-messages::-webkit-scrollbar-thumb {
+    background: #00ff41;
+    border-radius: 3px;
 }
 
-.verify-btn:hover {
-    background-color: #ce0f25;
+/* User Message Bubble */
+.user-msg {
+    align-self: flex-end;
+    background-color: rgba(0, 255, 65, 0.1);
+    border: 1px solid rgba(0, 255, 65, 0.5);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 12px 12px 0 12px;
+    max-width: 85%;
+    margin-bottom: 8px;
+    text-align: right;
+    word-wrap: break-word;
+}
+
+/* Bot Message Bubble */
+.bot-msg {
+    align-self: flex-start;
+    background-color: rgba(0, 20, 0, 0.8);
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    color: #00ff41;
+    padding: 8px 12px;
+    border-radius: 12px 12px 12px 0;
+    max-width: 85%;
+    margin-bottom: 8px;
+    text-align: left;
+    box-shadow: 0 0 5px rgba(0, 255, 65, 0.1);
+    word-wrap: break-word;
+}
+
+/* Open Animation State */
+#chat-window.open {
+    display: flex;
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Typing Indicator Dots */
+.typing-dot {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #00ff41;
+    animation: typing 1.4s infinite ease-in-out both;
+    margin: 0 1px;
+}
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes typing {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
 }
