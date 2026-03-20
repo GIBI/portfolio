@@ -179,7 +179,9 @@
             User: <><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></>,
             Globe: <><circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></>,
             RefreshCw: <><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></>,
-            Eye: <><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" /></>
+            Eye: <><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" /></>,
+            Cloud: <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />,
+            ShieldCheck: <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></>
         };
 
         const Icon = ({ name, size = 24, className = "", ...props }) => {
@@ -203,41 +205,26 @@
             );
         };
 
+        // Dedicate WhatsAppIcon since it needs fill="currentColor" specifically
         const WhatsAppIcon = ({ className }) => (
             <svg viewBox="0 0 24 24" fill="currentColor" className={className} xmlns="http://www.w3.org/2000/svg">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
             </svg>
         );
 
-        // Make icons accessible as individual components
-        const Icons = Object.keys(SVGPaths).reduce((acc, key) => {
-            acc[key] = (props) => <Icon name={key} {...props} />;
-            return acc;
-        }, {});
-
-        const { 
-            Shield, Terminal, Server, Lock, Cpu, Wifi, ExternalLink, Github, 
-            Linkedin, Mail, ChevronRight, ChevronLeft, Database, Search, 
-            AlertTriangle, CheckCircle, Download, Award, Briefcase, MapPin, 
-            GraduationCap, PlayCircle, Building2, MessageSquare, X, Send, 
-            Skull, Bug, Activity, Crosshair, Phone, Zap, MessageCircle, 
-            Share2, UserPlus, Eye, User, Globe, RefreshCw
-        } = Icons;
-
-
         // --- DATA CONFIGURATION ---
         const profile = {
             name: "Gibin G",
             title: "Cybersecurity Analyst | L1 IT Support Specialist",
             tagline: "Architecting resilient digital defenses and neutralizing advanced threats through proactive intelligence.",
-            status: "Visit Visa | Immediate Joiner", 
+            status: "Emplyment Visa | Immediate Joiner", 
             location: "Dubai, UAE",
-            email: "gibin.g@example.com", 
-            phone: "+971 50 123 4567",
-            whatsapp: "971501234567",
-            linkedin: "https://linkedin.com/in/gibin-g",
+            email: "gibigibin3@gmail.com", 
+            phone: "+971582906526",
+            whatsapp: "971582906526",
+            linkedin: "https:linkedin.com/in/gibin-g-cyber-entry",
             github: "https://github.com/gibi",
-            resumeLink: "resume/Gibin_Cybersecurity_1yr_exp.pdf"
+            resumeLink: "resume/gibin_original (2).pdf"
         };
 
         const experience = [
@@ -249,7 +236,7 @@
                 location: "Ajman, UAE",
                 flag: "https://flagcdn.com/w40/ae.png",
                 desc: "Provided on-site IT support for hospital staff to ensure uninterrupted clinical and administrative operations. Configured IP settings, managed Ethernet cabling, and maintained network switches. Installed and troubleshot OS, printers, and peripherals. Delivered rapid-response technical assistance to doctors and nurses, including support for MEDAS software, minimizing downtime in critical healthcare areas.",
-                logo: "https://ui-avatars.com/api/?name=Metro+Medical&background=ef4444&color=fff&bold=true&size=100", 
+                logo: "https://tse1.mm.bing.net/th/id/OIP.WOVwsXBi5MJoaKFjKrbSMwHaHa?pid=Api&P=0&h=180", 
                 skills: ["On-site IT Support", "Network Troubleshooting", "MEDAS Software", "Hardware Maintenance", "System Configuration"]
             },
             {
@@ -260,7 +247,7 @@
                 location: "India",
                 flag: "https://flagcdn.com/w40/in.png",
                 desc: "Spearheaded proactive dark web monitoring operations, translating raw threat data into actionable intelligence reports. Identified critical Indicators of Compromise (IOCs) and documented adversarial TTPs.",
-                logo: "https://ui-avatars.com/api/?name=Falcon+Feeds&background=10b981&color=fff&bold=true&size=100", 
+                logo: "https://media.licdn.com/dms/image/v2/D560BAQHapI0g_uLuZQ/company-logo_200_200/company-logo_200_200/0/1697223594582/integriteio_logo?e=2147483647&v=beta&t=j3cytdIN8DXg_dELtharg0qOshUlf-_9mIXdoEtBj1Y", 
                 skills: ["Threat Intelligence", "Dark Web Monitoring", "OSINT", "IOC Analysis", "TTP Documentation"] 
             },
             {
@@ -271,7 +258,7 @@
                 location: "India",
                 flag: "https://flagcdn.com/w40/in.png",
                 desc: "Engineered a custom Python-based web vulnerability scanner to automate the detection of OWASP Top 10 risks. Successfully identified and documented critical vulnerabilities.",
-                logo: "https://ui-avatars.com/api/?name=Pheme+Software&background=0ea5e9&color=fff&bold=true&size=100", 
+                logo: "https://www.phemesoft.com/logo.svg", 
                 skills: ["Python Automation", "Web Security", "OWASP Top 10", "Vulnerability Scanning", "Tool Development"]
             },
             {
@@ -282,7 +269,7 @@
                 location: "India",
                 flag: "https://flagcdn.com/w40/in.png",
                 desc: "Executed comprehensive system and network security assessments utilizing Kali Linux tools (Nmap, Burp Suite). Discovered and reported high-impact vulnerabilities.",
-                logo: "https://ui-avatars.com/api/?name=Eye+Q&background=6366f1&color=fff&bold=true&size=100", 
+                logo: "https://yt3.googleusercontent.com/Rdup0d44uBKbH7QNflEiHLaJ3gnjq0kA_mgIvGg2f0vYRxffWMA3VVNps-Ayka4oyyRBBIY5=s900-c-k-c0x00ffffff-no-rj", 
                 skills: ["Penetration Testing", "Kali Linux", "Nmap", "Burp Suite", "Network Security"]
             }
         ];
@@ -335,23 +322,33 @@
                 desc: "Leveraged advanced generative AI platforms to produce a professional-grade advertisement video. Showcases expertise in cutting-edge prompt engineering and AI-driven content creation.",
                 tech: ["GenAI", "Prompt Engineering", "Video Editing"],
                 playlist: [
-                    { title: "Ad Campaign Demo 1", url: "https://www.w3schools.com/html/mov_bbb.mp4" },
-                    { title: "Ad Campaign Demo 2", url: "https://www.w3schools.com/html/movie.mp4" }
+                    { title: "Ad Campaign Demo 1", url: "videos/Insta_reel.mp4" },
+                    { title: "Ad Campaign Demo 2", url: "videos/Mattress test.mp4" }
+                    
                 ],
                 icon: <Icon name="PlayCircle" className="w-4 h-4 mr-1" />
             }
         ];
 
         const certifications = [
-            { name: "Certified Ethical Hacker (CEH v12)", issuer: "Learn Karts", date: "2024", link: "#", image: "https://placehold.co/600x400/10b981/ffffff?text=CEH+v12" },
-            { name: "AI Prompt Engineering", issuer: "Dubai Centre for AI", date: "2024", link: "#", image: "https://placehold.co/600x400/0ea5e9/ffffff?text=AI+Prompt" },
-            { name: "Cyber Security – Advanced", issuer: "IBM", date: "2023", link: "#", image: "https://placehold.co/600x400/6366f1/ffffff?text=IBM+Security" },
-            { name: "Google Cybersecurity Professional", issuer: "Coursera", date: "2023", link: "#", image: "https://placehold.co/600x400/f59e0b/ffffff?text=Google+Cyber" },
-            { name: "Generative AI Essentials", issuer: "Coursera (IBM)", date: "2023", link: "#", image: "https://placehold.co/600x400/8b5cf6/ffffff?text=GenAI+Essentials" },
-            { name: "Intro to Splunk", issuer: "Splunk", date: "2023", link: "#", image: "https://placehold.co/600x400/ec4899/ffffff?text=Splunk" },
-            { name: "Practical Approach to Cybersecurity", issuer: "TCS iON", date: "2023", link: "#", image: "https://placehold.co/600x400/14b8a6/ffffff?text=TCS+iON" },
-            { name: "Introduction to Cybersecurity", issuer: "Cisco", date: "2023", link: "#", image: "https://placehold.co/600x400/3b82f6/ffffff?text=Cisco+Intro" },
-            { name: "Network Security", issuer: "ISC2", date: "2023", link: "#", image: "https://placehold.co/600x400/ef4444/ffffff?text=ISC2+Network" }
+            { name: "Certified Ethical Hacker (CEH v12)", issuer: "Learn Karts", date: "2024", link: "#", image: "images/cert/ceh.jpg" },
+            { name: "AI Prompt Engineering", issuer: "Dubai Centre for AI", date: "2025", link: "#", image: "images/cert/million.jpg" },
+            { name: "Cyber Security – Advanced", issuer: "IBM", date: "2023", link: "#", image: "images/cert/ibm.png" },
+            { name: "Google Cybersecurity Professional", issuer: "Coursera", date: "2025", link: "#", image: "images/cert/google.jpg" },
+            { name: "Generative AI Essentials", issuer: "Coursera (IBM)", date: "2023", link: "#", image: "images/cert/ibm ai.jpg" },
+            { name: "Intro to Splunk", issuer: "Splunk", date: "2023", link: "#", image: "images/cert/splunk.jpg" },
+            { name: "Practical Approach to Cybersecurity", issuer: "TCS iON", date: "2023", link: "#", image: "images/cert/tcs.png" },
+            { name: "Introduction to Cybersecurity", issuer: "Cisco", date: "2025", link: "#", image: "images/cert/cisco.jpg" },
+            { name: "Network Security", issuer: "ISC2", date: "2024", link: "#", image: "images/cert/isc2.jpg" }
+        ];
+
+        const badges = [
+            { name: "AWS Cloud 101", issuer: "AWS", verify: "https://www.credly.com/earner/earned/badge/62564c81-a2b4-4bbe-a836-62bfb5762a5b", image: "images/badge/101.png" },
+            { name: "Intro to Cybersecurity", issuer: "Cisco", verify: "https://www.credly.com/earner/earned/badge/c4c3252a-015b-471d-8934-80ce9d6a3b17", image: "https://images.credly.com/size/340x340/images/af8c6b4e-fc31-47c4-8dcb-eb7a2065dc5b/I2CS__1_.png" },
+            { name: "Generative AI", issuer: "IBM", verify: "https://www.credly.com/earner/earned/badge/1d62ab46-33ee-4891-b871-85df21a0f7ca", image: "images/badge/ibm ai.png" },
+            { name: "Start with Security", issuer: "AWS", verify: "https://www.credly.com/earner/earned/badge/830ef2b6-4a09-442d-8674-a9fef3bffee7", image: "images/badge/aws sec.png" },
+            { name: "Cyber Security Badge", issuer: "Google", verify: "https://www.credly.com/earner/earned/badge/1abb36e1-c08e-4dea-89fd-4589bf924596", image: "images/badge/google.png" },
+            { name: "IBM Advanced Cert", issuer: "IBM", verify: "https://www.credly.com/badges/c4f58a13-7672-4cb3-96d0-b51ca7fdda38/public_url", image: "images/badge/ibm.png" }
         ];
 
         const education = [
@@ -362,7 +359,7 @@
                 location: "Mangalore, India",
                 year: "Completed May 2025",
                 details: "CGPA: 7.63 / 10 | Team Lead for IBM Technical Presentation",
-                logo: "https://ui-avatars.com/api/?name=Yenepoya+University&background=ffffff&color=000&bold=true&size=100" 
+                logo: "https://i.pinimg.com/736x/b6/08/50/b60850ae362725a158572181ae9341d4.jpg" 
             },
             {
                 degree: "Higher Secondary Education (Grade 12)",
@@ -371,17 +368,8 @@
                 location: "Kerala, India",
                 year: "Completed May 2022",
                 details: "Stream: Computer Science (Maths, Physics & Chemistry) | Grade: 80%",
-                logo: "https://ui-avatars.com/api/?name=MES+EMHSS&background=ffffff&color=000&bold=true&size=100" 
+                logo: "https://scontent.fdxb3-3.fna.fbcdn.net/v/t39.30808-6/411337640_122108045492146614_4106390450059833231_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=Jg4ZM58BhCUQ7kNvwErcQXC&_nc_oc=AdosETu0vwEpYv70yDdzLTsMFKN_odkQoy2R2FAN7kBHu5QNw9AhYxq5rNqMjOqWhkBw2jGfurek7lS95PIVq8iT&_nc_zt=23&_nc_ht=scontent.fdxb3-3.fna&_nc_gid=7IPLjdPoB5wCCmLHYgdtsA&_nc_ss=7a30f&oh=00_AfxGje8aHoeRP-KmMoGiNdpZlhAts3wGtzC_pkbxo8chJw&oe=69C325D1" 
             }
-        ];
-
-        const badges = [
-            { name: "AWS Cloud 101", issuer: "AWS", verify: "https://www.credly.com/earner/earned/badge/62564c81-a2b4-4bbe-a836-62bfb5762a5b" },
-            { name: "Intro to Cybersecurity", issuer: "Cisco", verify: "https://www.credly.com/earner/earned/badge/c4c3252a-015b-471d-8934-80ce9d6a3b17" },
-            { name: "Generative AI", issuer: "IBM", verify: "https://www.credly.com/earner/earned/badge/1d62ab46-33ee-4891-b871-85df21a0f7ca" },
-            { name: "Start with Security", issuer: "AWS", verify: "https://www.credly.com/earner/earned/badge/830ef2b6-4a09-442d-8674-a9fef3bffee7" },
-            { name: "Cyber Security Badge", issuer: "Google", verify: "https://www.credly.com/earner/earned/badge/1abb36e1-c08e-4dea-89fd-4589bf924596" },
-            { name: "IBM Advanced Cert", issuer: "IBM", verify: "https://www.credly.com/badges/c4f58a13-7672-4cb3-96d0-b51ca7fdda38/public_url" }
         ];
 
         // --- COMPONENTS ---
@@ -617,7 +605,7 @@
                     { delay: 1500, text: 'Gibin G. | Cybersecurity & IT Support Specialist', type: 'success' },
                     { delay: 2500, text: '> cat location.txt', type: 'command' },
                     { delay: 3200, text: '• Current Location: Dubai, UAE', type: 'info' },
-                    { delay: 4000, text: '• Visa Status: Visit Visa (Immediate Joining)', type: 'info' },
+                    { delay: 4000, text: '• Visa Status: Employment Visa (Immediate Joining)', type: 'info' },
                     { delay: 4800, text: '> check_skills', type: 'command' },
                     { delay: 5600, text: '• Technical: CEH v12, Splunk, Network Security', type: 'info' },
                     { delay: 6000, text: '• Support: Active Directory, Office 365, Hardware', type: 'info' },
@@ -856,7 +844,13 @@
                         {badges.map((badge, i) => (
                             <FadeIn key={i} delay={i * 50}>
                                 <a href={badge.verify} target="_blank" className="group relative flex flex-col items-center p-4 bg-slate-950 rounded-lg border border-slate-800 hover:border-emerald-500 transition-all cursor-pointer hover:-translate-y-2 h-full text-center overflow-hidden shadow-lg">
-                                    <div className="relative z-10 w-12 h-12 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center mb-3 group-hover:scale-110 group-hover:border-emerald-500 transition-all shadow-[0_0_10px_rgba(0,0,0,0.5)]"><Icon name="Zap" className="w-6 h-6 text-cyan-500 group-hover:text-emerald-400 transition-colors" /></div>
+                                    <div className="relative z-10 w-16 h-16 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center mb-3 group-hover:scale-110 group-hover:border-emerald-500 transition-all shadow-[0_0_10px_rgba(0,0,0,0.5)] p-1.5">
+                                        {badge.image ? (
+                                            <img src={badge.image} alt={badge.name} className="w-full h-full object-contain" />
+                                        ) : (
+                                            <Icon name={badge.iconName || "Zap"} className="w-6 h-6 text-cyan-500 group-hover:text-emerald-400 transition-colors" />
+                                        )}
+                                    </div>
                                     <div className="relative z-10 flex flex-col flex-1"><span className="text-xs font-bold text-white group-hover:text-emerald-400 mb-1 leading-tight">{badge.name}</span><span className="text-[10px] text-slate-500 uppercase tracking-wider">{badge.issuer}</span></div>
                                 </a>
                             </FadeIn>
@@ -898,14 +892,14 @@
                         <p className="text-slate-300 mb-8 max-w-xl mx-auto relative z-10">Actively seeking challenging roles in IT Support, SOC, or Incident Response teams.</p>
                         <div className="flex flex-col items-center gap-6 relative z-10">
                             <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-                                <a href={`mailto:${profile.email}`} className="px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold rounded-lg transition-all flex items-center justify-center space-x-2 hover:scale-105 min-w-[200px]"><Icon name="Mail" className="w-5 h-5" /><span>Send Email</span></a>
-                                <a href={`tel:${profile.phone}`} className="px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-lg border border-slate-700 transition-all flex items-center justify-center space-x-2 hover:scale-105 min-w-[200px] hover:border-emerald-500/50 hover:shadow-[0_0_15px_rgba(16,185,129,0.3)]"><Icon name="Phone" className="w-5 h-5 text-emerald-400" /><span>Call Now</span></a>
+                                <a href={`mailto:gibigibin3@gmail.com}`} className="px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold rounded-lg transition-all flex items-center justify-center space-x-2 hover:scale-105 min-w-[200px]"><Icon name="Mail" className="w-5 h-5" /><span>Send Email</span></a>
+                                <a href={`tel:+971528906526}`} className="px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-lg border border-slate-700 transition-all flex items-center justify-center space-x-2 hover:scale-105 min-w-[200px] hover:border-emerald-500/50 hover:shadow-[0_0_15px_rgba(16,185,129,0.3)]"><Icon name="Phone" className="w-5 h-5 text-emerald-400" /><span>Call Now</span></a>
                             </div>
                             <p className="text-sm text-slate-500 mt-4">Or connect via social platforms:</p>
                             <div className="flex justify-center space-x-6 text-slate-400">
                                 <a href={profile.linkedin} target="_blank" className="hover:text-blue-400 transition-colors hover:scale-110 p-2 bg-slate-900 rounded-full border border-slate-800 shadow-md"><Icon name="Linkedin" className="w-6 h-6" /></a>
                                 <a href={profile.github} target="_blank" className="hover:text-white transition-colors hover:scale-110 p-2 bg-slate-900 rounded-full border border-slate-800 shadow-md"><Icon name="Github" className="w-6 h-6" /></a>
-                                <a href={`https://wa.me/${profile.whatsapp}`} target="_blank" className="hover:text-[#25D366] transition-colors hover:scale-110 p-2 bg-slate-900 rounded-full border border-slate-800 shadow-md"><WhatsAppIcon className="w-6 h-6" /></a>
+                                <a href={`https://wa.me/971528906526`} target="_blank" className="hover:text-[#25D366] transition-colors hover:scale-110 p-2 bg-slate-900 rounded-full border border-slate-800 shadow-md"><WhatsAppIcon className="w-6 h-6" /></a>
                             </div>
                         </div>
                     </div>
